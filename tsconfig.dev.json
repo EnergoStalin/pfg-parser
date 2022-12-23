@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        /* Visit https://aka.ms/tsconfig to read more about this file */
+        /* Language and Environment */
+        "target": "ESNext",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    
+        /* Modules */
+        "module": "CommonJS",                                /* Specify what module code is generated. */
+        "rootDir": "./src",                                  /* Specify the root folder within your source files. */
+        "outDir": "./dist",
+        "skipLibCheck": true,                                 /* Skip type checking all .d.ts files. */
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "inlineSources": true,
+        "inlineSourceMap": true,
+    }
+}
