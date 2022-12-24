@@ -76,9 +76,11 @@ export default async function() {
             return count * delayGain
         },
         retryCondition: async (error) => {
-            if(error.response?.status !== 503)
+            if(error.response?.status === 401) {
                 token = await fetchToken()
-            return true
+                return true
+            }
+            return error.response?.status === 503
         }
     })
     
