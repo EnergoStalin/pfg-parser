@@ -39,6 +39,8 @@ __metadata:
     pino-pretty: ^9.1.1
     typescript: ^4.9.4
     xlsx: ^0.18.5
+  bin:
+    pfg-parser: ./dist/index.js
   languageName: unknown
   linkType: soft
 
