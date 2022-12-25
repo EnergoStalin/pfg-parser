@@ -1,9 +1,7 @@
 name: npm
 
 on:
-  push:
-    tags:
-      - '*'
+  workflow_call:
 
 jobs:
   publish:

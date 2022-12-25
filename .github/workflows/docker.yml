@@ -1,14 +1,16 @@
 name: docker
 
 on:
-  workflow_run:
-    workflows:
-      - npm
-    types:
-      - completed
+  push:
+    tags:
+      - "*"
 
 jobs:
-  publish:
+  npm:
+    uses: ./yarn.yml
+
+  docker:
+    needs: npm
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
