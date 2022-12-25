@@ -12,3 +12,4 @@
 dist
 docs
 .cache
+*.code-workspace

@@ -1,4 +1,5 @@
 import { AxiosInstance } from 'axios';
+import { Config } from '../config';
 
 async function *paginator(api: AxiosInstance, filter: any, page: number = 1, limit: number = 100) {
     const fl = JSON.parse(JSON.stringify(filter))
@@ -12,6 +13,14 @@ async function *paginator(api: AxiosInstance, filter: any, page: number = 1, lim
     } while(declarations.items.length !== 0 || declarations.total !== 0)
 }
 
-export function getDeclarationsPaginator(api: AxiosInstance, filter) {
-    return paginator(api, filter)
+export class Declaration {
+    constructor(private api: AxiosInstance, private config: Config) {}
+
+    public Query(query: any) {
+        return paginator(this.api, query)
+    }
+
+    public async Id(id: number) {
+        return (await this.api.get(`${this.config.DeclarationsPath}/${id}`)).data
+    }
 }

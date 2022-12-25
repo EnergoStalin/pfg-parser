@@ -9,6 +9,7 @@
             "request": "launch",
             "name": "Debug",
             "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
             "runtimeExecutable": "npm",
             "runtimeArgs": ["exec", "yarn", "run", "start:debug"],
             "skipFiles": [
