@@ -33,6 +33,8 @@ export class Config {
     public DeclarationsPath = process.env.PFG_PARSER_DECLARATIONS_PATH
 
     public LogLevel = process.env.PFG_PARSER_LOG_LEVEL ?? 'info'
+    public LogStyle = process.env.PFG_PARSER_LOG_STYLE ?? 'pretty'
+    public PinoTransport?
 
     public ProxyConfig?
 
@@ -40,13 +42,11 @@ export class Config {
     public constructor() {
         if(ProxyConfig.Avalible())
             this.ProxyConfig = new ProxyConfig()
-    }
-
-    public ParseFromArgs() {
-        const program = new Command()
-        program.description('Delacration parser')
-
-        program.parse()
-        return this
+        this.PinoTransport = this.LogStyle === 'pretty' ? {
+            target: 'pino-pretty',
+            options: {
+                colorize: true
+            }
+        } : null
     }
 }

@@ -11,6 +11,11 @@
             "cwd": "${workspaceFolder}",
             "outputCapture": "std",
             "runtimeExecutable": "npm",
+            "args": [
+                "declaration",
+                "17335823",
+                "./17335823.xlsx"
+            ],
             "runtimeArgs": ["exec", "yarn", "run", "start:debug"],
             "skipFiles": [
                 "<node_internals>/**"

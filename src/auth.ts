@@ -32,7 +32,8 @@ function isExpired(token: string) {
 export async function auth(config: Config) {
     const logger = pino({
         name: 'axios',
-        level: config.LogLevel
+        level: config.LogLevel,
+        transport: config.PinoTransport
     })
 
     const storage = await kvsLocalStorage({
