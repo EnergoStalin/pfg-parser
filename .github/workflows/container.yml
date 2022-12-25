@@ -1,9 +1,11 @@
-name: Container
+name: docker
 
 on:
-  push:
-    tags:
-      - '*'
+  workflow_run:
+    workflows:
+      - npm
+    types:
+      - completed
 
 jobs:
   publish:
@@ -24,5 +26,5 @@ jobs:
           REGISTRY: ghcr.io
         run: |
           echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
-          docker build --build-arg NODE_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN }} --tag $REGISTRY/$REPO:latest .
-          docker image push $REGISTRY/$REPO:latest
+          docker build --build-arg NODE_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN }} --tag $REGISTRY/$REPO:${{ github.ref }} .
+          docker image push $REGISTRY/$REPO:${{ github.ref }}
