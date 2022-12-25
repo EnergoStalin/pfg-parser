@@ -17,7 +17,6 @@ jobs:
         with:
           node-version: 19
       - run: |
-          yarn set version stable
           yarn --immutable
           yarn build
           yarn npm publish
