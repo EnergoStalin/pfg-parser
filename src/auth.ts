@@ -71,9 +71,9 @@ export default async function() {
     axiosRetry(api, {
         retries: numRetries,
         retryDelay: (count) => {
-            console.log(`503 received retry: ${count}`)
-            rates.perMilliseconds *= delayGain
-            return count * delayGain
+            const cooldown = count * delayGain
+            console.error(`503 received retry: ${count} resume after ${cooldown / 1000} seconds`)
+            return cooldown
         },
         retryCondition: async (error) => {
             if(error.response?.status === 401) {
@@ -93,13 +93,13 @@ export default async function() {
 
             config.headers['authorization'] = token as string
 
-            console.log(config.url)
+            console.trace(config.url)
 
             return config
         }
     )
 
-    if(process.env.NODE_ENV === 'development')
+    if(process.env.PARSER_ENABLE_MOCKING)
         mock(api)
 
     return api

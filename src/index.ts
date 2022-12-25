@@ -34,7 +34,7 @@ function getMapping(obj1, obj2) {
         for(const {id} of declarations) {
             const file = path.join(process.env.PARSER_OUTPUT_DIRECTORY, `${id}.json`)
 
-            // try{await fs.access(file); console.log('Skipping',file); continue;}catch{}
+            try{await fs.access(file); console.log('Skipping',file); continue;}catch{}
 
             const declaration = await getDeclarationById(api, id)
     
