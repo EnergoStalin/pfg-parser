@@ -2,14 +2,15 @@ import axios, { AxiosInstance } from 'axios';
 import mockAdapter from 'axios-mock-adapter'
 import fs from 'fs/promises'
 import path from 'path';
+import { Config } from '../config';
 
-export default function mock(api: AxiosInstance) {
+export default function mock(api: AxiosInstance, config: Config) {
     const mk = new mockAdapter(api)
 
 
-    mk.onPost(`${process.env.PARSER_DECLARATIONS_PATH}/get`).reply(async (config) => {
-        const data = JSON.parse(config.data)
-        const aboba = (await fs.readdir(process.env.PARSER_OUTPUT_DIRECTORY))
+    mk.onPost(`${config.DeclarationsPath}/get`).reply(async (req) => {
+        const data = JSON.parse(req.data)
+        const aboba = (await fs.readdir(config.OutputDirectory))
             .slice(data.page*data.size-data.size, data.page*data.size)
             .filter(e => e.endsWith('.json'))
             .map(e => { return {id: parseInt(path.basename(e, '.json'))} })
@@ -19,15 +20,15 @@ export default function mock(api: AxiosInstance) {
         ]
     })
 
-    mk.onGet(new RegExp(`${process.env.PARSER_DECLARATIONS_PATH}/[0-9]+`)).reply(async (config) => {
-        const id = config.url.split('/').pop()
+    mk.onGet(new RegExp(`${config.DeclarationsPath}/[0-9]+`)).reply(async (req) => {
+        const id = req.url.split('/').pop()
         return [
             200,
-            JSON.parse(await fs.readFile(path.join(process.env.PARSER_OUTPUT_DIRECTORY, `${id}.json`)) as any as string)
+            JSON.parse(await fs.readFile(path.join(config.OutputDirectory, `${id}.json`)) as any as string)
         ]
     })
 
-    new mockAdapter(axios).onPost(`${process.env.PARSER_BASE_URL}${process.env.PARSER_LOGIN_PATH}`).reply(async (config) => {
+    new mockAdapter(axios).onPost(`${config.BaseUrl}${config.LoginPath}`).reply(async (req) => {
         return [
             200,
             null,

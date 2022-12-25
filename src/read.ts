@@ -1,5 +1,6 @@
 import fs from 'fs/promises'
+import { Config } from './config'
 
-export async function filter() {
-    return JSON.parse(await fs.readFile(process.env.PARSER_DECLARATIONS_FILTER, { encoding: 'utf-8' }))
+export async function filter(config: Config) {
+    return JSON.parse(await fs.readFile(config.DeclarationsFilter, { encoding: 'utf-8' }))
 }

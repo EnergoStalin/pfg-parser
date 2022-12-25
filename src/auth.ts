@@ -7,6 +7,7 @@ import httpsProxyAgent from 'https-proxy-agent'
 import https from 'https'
 import mock from './api/mocking'
 import {Config, ProxyConfig} from './config'
+import pino from 'pino'
 
 function getProxy(config: ProxyConfig | null) {
     return config ? httpsProxyAgent({
@@ -29,6 +30,11 @@ function isExpired(token: string) {
 }
 
 export async function auth(config: Config) {
+    const logger = pino({
+        name: 'axios',
+        level: config.LogLevel
+    })
+
     const storage = await kvsLocalStorage({
         name: 'auth',
         version: 1
@@ -52,10 +58,11 @@ export async function auth(config: Config) {
         retries: config.Retries,
         retryDelay: (count) => {
             const cooldown = count * config.DelayGain
-            console.error(`503 received retry: ${count} resume after ${cooldown / 1000} seconds`)
+            logger.error(`503 received retry: ${count} resume after ${cooldown / 1000} seconds`)
             return cooldown
         },
         retryCondition: async (error) => {
+            logger.error(error)
             if(error.response?.status === 401) {
                 token = await fetchToken(config)
                 return true
@@ -69,18 +76,19 @@ export async function auth(config: Config) {
             if(!token || isExpired(token as string)) {
                 token = await fetchToken(config)
                 storage.set('auth_token', token)
+                logger.debug(`New Token fetched ${token}`)
             }
 
             request.headers['authorization'] = token as string
 
-            console.info(request.url)
+            logger.info(request.url)
 
             return request
         }
     )
 
     if(process.env.PARSER_ENABLE_MOCKING)
-        mock(api)
+        mock(api, config)
 
     return api
 }
