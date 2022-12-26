@@ -3,5 +3,5 @@
         "inlineSources": true,
         "inlineSourceMap": true,
     },
-    "extends": "tsconfig.json"
+    "extends": "./tsconfig.json"
 }

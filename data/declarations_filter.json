@@ -18,14 +18,7 @@
             "minDate": null,
             "maxDate": null
         },
-        "columnsSearch": [
-            {
-                "name": "number",
-                "search": "",
-                "type": 9,
-                "translated": false
-            }
-        ],
+        "columnsSearch": [],
         "idProductOrigin": [],
         "idProductEEU": [],
         "idProductRU": [],
@@ -34,7 +27,11 @@
         "awaitOperatorCheck": null,
         "editApp": null,
         "violationSendDate": null,
-        "isProtocolInvalid": null
+        "isProtocolInvalid": null,
+        "resultChecker": null,
+        "statusChecker": null,
+        "protocolsChecker": null,
+        "mistakeFound": null
     },
     "columnsSort": [
         {

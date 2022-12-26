@@ -13,15 +13,25 @@
             "runtimeExecutable": "npm",
             "args": [
                 "declaration",
-                "17335823",
-                "./17335823.xlsx"
+                "16239655",
+                "./16239655.json"
             ],
             "runtimeArgs": ["exec", "yarn", "run", "start:debug"],
             "skipFiles": [
                 "<node_internals>/**"
             ],
             "outFiles": [
-                "${workspaceFolder}/dist/*.js"
+                "${workspaceFolder}/dist/**/*.js"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "merge",
+            "cwd": "${workspaceFolder}/data",
+            "program": "merge.js",
+            "skipFiles": [
+                "<node_internals>/**"
             ]
         }
     ]

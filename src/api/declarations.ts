@@ -12,6 +12,10 @@ export class Declaration {
         return (await this.api.get(`${this.config.DeclarationsPath}/${id}`)).data
     }
 
+    public async Identifiers() {
+        return (await this.api.get(this.config.DeclarationIdentifiersPath)).data
+    }
+
     private async *_paginator(filter: any, page: number = 1, limit: number = 100) {
         const fl = JSON.parse(JSON.stringify(filter))
         fl.page = page

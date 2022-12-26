@@ -2,10 +2,8 @@ import { AxiosInstance } from 'axios';
 import fs from 'fs/promises'
 import path from 'path';
 import pino from 'pino';
-import { dot } from 'dot-object'
 import { Declaration } from '../api/declarations';
 import { Config } from '../config';
-import { getMapping } from '../mapper';
 
 function setupLogger(config: Config) {
     return pino({
@@ -15,29 +13,44 @@ function setupLogger(config: Config) {
     })
 }
 
-export async function single(id: number, file: string, axios: AxiosInstance, config: Config) {
+export async function single(args: any, axios: AxiosInstance, config: Config) {
     const api = new Declaration(axios, config)
-    const logger = setupLogger(config)
+    // const logger = setupLogger(config)
 
-    const decl = await api.Id(id)
+    const data = await api.Id(parseInt(args.id)),
+        string = JSON.stringify(data)
+    if(args.stdout) {
+        console.log(string)
+        return
+    }
+    await fs.writeFile(args.file, string)
 }
 
-export async function batch(query: string, axios: AxiosInstance, config: Config) {
+export async function batch(args: any, axios: AxiosInstance, config: Config) {
     const api = new Declaration(axios, config)
     const logger = setupLogger(config)
 
-    try{await fs.mkdir(config.OutputDirectory, { recursive: true })}catch{}
+    if(!args.stdout) {
+        try{await fs.mkdir(config.OutputDirectory, { recursive: true })}catch{}
+    }
 
-    for await(const declarations of api.Query(query)) {
+    for await(const declarations of api.Query(JSON.parse(args.filter))) {
         for(const {id} of declarations) {
-            const file = path.join(config.OutputDirectory, `${id}.json`)
+            let file
     
-            try{await fs.access(file); logger.info(`Skipping ${file}`); continue;}catch{}
-    
-            const declaration = await api.Id(id)
-    
-            const data = Object.fromEntries(Object.entries(dot(declaration)).filter(([_,v]) => v))
-            await fs.writeFile(file, JSON.stringify(data, null, 2))
+            if(!args.stdout) {
+                file = path.join(config.OutputDirectory, `${id}.json`)
+                try{await fs.access(file); logger.info(`Skipping ${file}`); continue;}catch{}
+            }
+            
+            const declaration = await api.Id(id),
+                text = JSON.stringify(declaration, null, args.raw ? null : 2)
+
+            if(args.stdout) {
+                console.log(text)
+            } else {
+                await fs.writeFile(file, text)
+            }
         }
     }
 }

@@ -1,5 +1,4 @@
 import dotenv from 'dotenv'
-import { Command } from 'commander'
 
 dotenv.config({
     path: process.env.PFG_PARSER_DOTENV_LOCATION ?? '.env'
@@ -29,11 +28,12 @@ export class Config {
     public DelayGain = parseInt(process.env.PFG_PARSER_RETRY_DELAY_GAIN ?? '2000')
     public Retries = parseInt(process.env.PFG_PARSER_NUM_RETRIES ?? '10')
 
-    public DeclarationsFilter = process.env.PFG_PARSER_DECLARATIONS_FILTER
-    public DeclarationsPath = process.env.PFG_PARSER_DECLARATIONS_PATH
+    public DeclarationsFilter? = process.env.PFG_PARSER_DECLARATIONS_FILTER
+    public DeclarationIdentifiersPath = process.env.PFG_PARSER_DECLARATION_IDENTIFIERS_PATH ?? '/api/v1/rds/common/identifiers'
+    public DeclarationsPath = process.env.PFG_PARSER_DECLARATIONS_PATH ?? '/api/v1/rds/common/declarations'
 
     public LogLevel = process.env.PFG_PARSER_LOG_LEVEL ?? 'info'
-    public LogStyle = process.env.PFG_PARSER_LOG_STYLE ?? 'pretty'
+    public LogStyle? = process.env.PFG_PARSER_LOG_STYLE
     public PinoTransport?
 
     public ProxyConfig?
@@ -45,7 +45,8 @@ export class Config {
         this.PinoTransport = this.LogStyle === 'pretty' ? {
             target: 'pino-pretty',
             options: {
-                colorize: true
+                colorize: true,
+                hideObject: true
             }
         } : null
     }
