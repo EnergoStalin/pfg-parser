@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 import mockAdapter from 'axios-mock-adapter'
 import fs from 'fs/promises'
 import path from 'path';
-import { Config } from '../config';
+import { Config } from '../../config';
 
 export default function mock(api: AxiosInstance, config: Config) {
     const mk = new mockAdapter(api)

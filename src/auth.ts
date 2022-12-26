@@ -5,7 +5,6 @@ import jwt from 'jwt-decode'
 import axiosRetry from 'axios-retry'
 import httpsProxyAgent from 'https-proxy-agent'
 import https from 'https'
-import mock from './api/mocking'
 import {Config, ProxyConfig} from './config'
 import pino from 'pino'
 
@@ -87,9 +86,6 @@ export async function auth(config: Config) {
             return request
         }
     )
-
-    if(process.env.PARSER_ENABLE_MOCKING)
-        mock(api, config)
 
     return api
 }
