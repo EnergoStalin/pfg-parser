@@ -16,7 +16,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: |
+          cache: yarn
+      - name: Build & Publish
+        run: |
           yarn --immutable
           yarn build
           yarn npm publish
