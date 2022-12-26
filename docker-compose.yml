@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  pfg-parser:
+    image: ghcr.io/energostalin/pfg-parser:latest
+    build:
+      context: .
+      cache_from:
+        - ghcr.io/energostalin/pfg-parser:latest
+      tags:
+        - ghcr.io/energostalin/pfg-parser:${RELEASE_VERSION-0}
+        - ghcr.io/energostalin/pfg-parser:latest
+      args:
+        - NODE_AUTH_TOKEN
+    env_file:
+      - .env
+    volumes:
+      - ./data/out:/app/out
