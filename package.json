@@ -1,6 +1,6 @@
 {
   "name": "@energostalin/pfg-parser",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/EnergoStalin/pfg-parser.git"
@@ -10,7 +10,7 @@
   },
   "bin": "./dist/index.js",
   "files": [
-    "dist/*"
+    "dist/**"
   ],
   "packageManager": "yarn@3.3.1",
   "scripts": {
