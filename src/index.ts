@@ -7,7 +7,7 @@ import { Declaration } from './api/declarations'
 import { batch, single } from './commands/declaration'
 import fs from 'fs/promises'
 
-export {Declaration, Config} 
+export { auth, Declaration as DeclarationApi, Config }
 
 if(require.main === module)
 (async function() {

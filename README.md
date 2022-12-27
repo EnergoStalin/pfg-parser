@@ -2,12 +2,10 @@
 
 ## Возможности
 
-> Примеры указанных значений смотреть в примере конфига
+> Примеры указанных значений смотреть в конфигe
 
 - [x] Консольный интерфейс
-- [ ] Сопоставлять данные из запроса с шаблоном и выдавать их в табличном виде **PARSER_MANUAL_INFO**
-- [ ] Обьединять таблицы в единую базу данных xlsx
-- [x] Запрашивать декларации по фильтру [с этой страницы](https://pub.fsa.gov.ru/api/v1/rds/common/declarations/get) **PARSER_DECLARATIONS_FILTER** и сохранять в **PARSER_OUTPUT_DIRECTORY**
+- [x] Запрашивать декларации по фильтру [с этой страницы](https://pub.fsa.gov.ru/rds/declaration) **PARSER_DECLARATIONS_FILTER** и сохранять в **PARSER_OUTPUT_DIRECTORY**
 - [x] npm пакет
 - [x] docker образ
 
@@ -18,7 +16,7 @@ docker login -u GITHUB_USERNAME -p GITHUB_TOKEN ghcr.io
 docker pull ghcr.io/energostalin/pfg-parser
 docker start -v data:/app/out ghcr.io/energostalin/pfg-parser -- declaration 131232 ./out/131232.xslx
 ```
-### Yarn
+### Yarn 3.3.1
 NODE_AUTH_TOKEN токен от гитхаба с разрешениями registry:read
 ### **.yarnrc.yml**
 ```yaml
@@ -35,9 +33,11 @@ yarn init
 yarn add @energostalin/pfg-parser@latest
 yarn exec pfg-parser declaration 131232 ./131232.xslx
 ```
+### Или как пакет через yarn
+См. примеры в папке [examples](https://github.com/EnergoStalin/pfg-parser/tree/master/examples)
 
 ## Пример .env конфига
-> Где лежит .env конфигурация можно указать через переменную окружения **PFG_PARSER_DOTENV_LOCATION**. Все опции так же доступны через аргументы командной строки только без префикса **PFG_PARSER**.
+> Где лежит .env конфигурация можно указать через переменную окружения **PFG_PARSER_DOTENV_LOCATION**. Дефолтные значения указаны справа.
 
 > **Note** в случае с докером надо прокинуть конфиг в контейнер через флаг -v указав в **PFG_PARSER_DOTENV_LOCATION** путь до файла внутри контейнера
 

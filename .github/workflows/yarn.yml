@@ -20,5 +20,5 @@ jobs:
       - name: Build & Publish
         run: |
           yarn --immutable
-          yarn build
-          yarn npm publish
+          yarn package
+          yarn npm publish --access public

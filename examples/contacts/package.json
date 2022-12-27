@@ -1,0 +1,21 @@
+{
+  "name": "contacts",
+  "type": "module",
+  "packageManager": "yarn@3.3.1",
+  "bin": "./dist/index.js",
+  "scripts": {
+    "dev": "tsc -p tsconfig.dev.json --watch",
+    "build": "tsc",
+    "start:debug": "NODE_ENV=development node ./dist/index.js"
+  },
+  "dependencies": {
+    "@energostalin/pfg-parser": "link:../..",
+    "@types/node": "^18.11.18"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.4"
+  },
+  "resolutions": {
+    "@energostalin/pfg-parser": "portal:../.."
+  }
+}

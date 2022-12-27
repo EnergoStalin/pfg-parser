@@ -5,13 +5,16 @@
     "target": "ESNext",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
 
     /* Modules */
-    "module": "CommonJS",                                /* Specify what module code is generated. */
+    "module": "ES6",                                /* Specify what module code is generated. */
     "rootDir": "./src",                                  /* Specify the root folder within your source files. */
-    "outDir": "./dist",
+    "outDir": "./dist/esm",
     "skipLibCheck": true,                                 /* Skip type checking all .d.ts files. */
     // "typeRoots": ["./src/types"],
     "resolveJsonModule": true,
+    "moduleResolution": "node",
     "esModuleInterop": true,
-    "declaration": true
-  }
+    "declaration": true,
+    "declarationDir": "./dist/types"
+  },
+  "exclude": ["examples","dist"]
 }

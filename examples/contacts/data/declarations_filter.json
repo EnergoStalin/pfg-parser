@@ -1,0 +1,42 @@
+{
+    "size": 10,
+    "page": 0,
+    "filter": {
+        "status": [],
+        "idDeclType": [],
+        "idCertObjectType": [],
+        "idProductType": [],
+        "idGroupRU": [],
+        "idGroupEEU": [],
+        "idTechReg": [],
+        "idApplicantType": [],
+        "regDate": {
+            "minDate": null,
+            "maxDate": null
+        },
+        "endDate": {
+            "minDate": null,
+            "maxDate": null
+        },
+        "columnsSearch": [],
+        "idProductOrigin": [],
+        "idProductEEU": [],
+        "idProductRU": [],
+        "idDeclScheme": [],
+        "awaitForApprove": null,
+        "awaitOperatorCheck": null,
+        "editApp": null,
+        "violationSendDate": null,
+        "isProtocolInvalid": null,
+        "resultChecker": null,
+        "statusChecker": null,
+        "protocolsChecker": null,
+        "mistakeFound": null
+    },
+    "columnsSort": [
+        {
+            "column": "declDate",
+            "sort": "DESC"
+        }
+    ]
+}

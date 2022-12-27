@@ -21,9 +21,9 @@ export class Config {
     public Password = process.env.PFG_PARSER_PASSWORD ?? 'hrgesf7HDR67Bd'
     public User = process.env.PFG_PARSER_USER ?? 'anonymous'
 
-    public MaxRequests = parseInt(process.env.PFG_PARSER_MAX_REQUESTS ?? '4')
+    public MaxRequests = parseInt(process.env.PFG_PARSER_MAX_REQUESTS ?? '2')
     public PerMillisseconds = parseInt(process.env.PFG_PARSER_REQUESTS_PER_MILLICONDS ?? '1000')
-    public MaxRps = parseInt(process.env.PFG_PARSER_MAX_RPS ?? '2')
+    public MaxRps = parseInt(process.env.PFG_PARSER_MAX_RPS ?? '1')
 
     public DelayGain = parseInt(process.env.PFG_PARSER_RETRY_DELAY_GAIN ?? '2000')
     public Retries = parseInt(process.env.PFG_PARSER_NUM_RETRIES ?? '10')
