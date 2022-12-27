@@ -1,8 +1,14 @@
 import dotenv from 'dotenv'
 
-dotenv.config({
-    path: process.env.PFG_PARSER_DOTENV_LOCATION ?? '.env'
-})
+
+/**
+ * Call this before creating config
+ */
+export function loadDotEnv() {
+    dotenv.config({
+        path: process.env.PFG_PARSER_DOTENV_LOCATION ?? '.env'
+    })
+}
 
 export class ProxyConfig {
     public ProxyHost = process.env.PFG_PARSER_PROXY_HOST
@@ -13,6 +19,9 @@ export class ProxyConfig {
     public static Avalible() { return !!process.env.PFG_PARSER_PROXY_HOST }
 }
 
+/**
+ * Global library config
+ */
 export class Config {
     public OutputDirectory = process.env.PFG_PARSER_OUTPUT_DIRECTORY
     public BaseUrl = process.env.PFG_PARSER_BASE_URL ?? 'https://pub.fsa.gov.ru'
@@ -21,7 +30,7 @@ export class Config {
     public Password = process.env.PFG_PARSER_PASSWORD ?? 'hrgesf7HDR67Bd'
     public User = process.env.PFG_PARSER_USER ?? 'anonymous'
 
-    public MaxRequests = parseInt(process.env.PFG_PARSER_MAX_REQUESTS ?? '2')
+    public MaxRequests = parseInt(process.env.PFG_PARSER_MAX_REQUESTS ?? '1')
     public PerMillisseconds = parseInt(process.env.PFG_PARSER_REQUESTS_PER_MILLICONDS ?? '1000')
     public MaxRps = parseInt(process.env.PFG_PARSER_MAX_RPS ?? '1')
 

@@ -1,4 +1,4 @@
-import axios, { AxiosProxyConfig } from 'axios'
+import axios from 'axios'
 import rateLimit from 'axios-rate-limit'
 import {kvsLocalStorage} from '@kvs/node-localstorage'
 import jwt from 'jwt-decode'

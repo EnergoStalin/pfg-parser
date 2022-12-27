@@ -1,13 +1,15 @@
 #!/usr/bin/env node
 
 import { auth } from './auth'
-import { Config } from './config'
+import { Config, loadDotEnv } from './config'
 import { Command } from 'commander'
-import { Declaration } from './api/declarations'
+import { DeclarationsApi } from './api/declarations'
 import { batch, single } from './commands/declaration'
 import fs from 'fs/promises'
 
-export { auth, Declaration as DeclarationApi, Config }
+loadDotEnv()
+
+export { auth, DeclarationsApi, Config, loadDotEnv }
 
 if(require.main === module)
 (async function() {

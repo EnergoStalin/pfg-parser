@@ -2,7 +2,7 @@ import { AxiosInstance } from 'axios';
 import fs from 'fs/promises'
 import path from 'path';
 import pino from 'pino';
-import { Declaration } from '../api/declarations';
+import { DeclarationsApi } from '../api/declarations';
 import { Config } from '../config';
 
 function setupLogger(config: Config) {
@@ -14,7 +14,7 @@ function setupLogger(config: Config) {
 }
 
 export async function single(args: any, axios: AxiosInstance, config: Config) {
-    const api = new Declaration(axios, config)
+    const api = new DeclarationsApi(axios, config)
     // const logger = setupLogger(config)
 
     const data = await api.Id(parseInt(args.id)),
@@ -27,7 +27,7 @@ export async function single(args: any, axios: AxiosInstance, config: Config) {
 }
 
 export async function batch(args: any, axios: AxiosInstance, config: Config) {
-    const api = new Declaration(axios, config)
+    const api = new DeclarationsApi(axios, config)
     const logger = setupLogger(config)
 
     if(!args.stdout) {

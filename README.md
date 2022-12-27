@@ -6,8 +6,12 @@
 
 - [x] Консольный интерфейс
 - [x] Запрашивать декларации по фильтру [с этой страницы](https://pub.fsa.gov.ru/rds/declaration) **PARSER_DECLARATIONS_FILTER** и сохранять в **PARSER_OUTPUT_DIRECTORY**
-- [x] npm пакет
+- [x] npm пакет для использования как библиотеки
 - [x] docker образ
+
+Информацию по точно присутствующим полям можно посмотреть [тут](https://github.com/EnergoStalin/pfg-parser/blob/master/data/summary.json).
+Скрипт для генерации находится в той же папке.
+> **NOTE** статистика собрана мной из выборки в 1233 последние декларации так что может быть не точной по отношению к старым данным
 
 ## Установка
 ### Docker
@@ -17,7 +21,7 @@ docker pull ghcr.io/energostalin/pfg-parser
 docker start -v data:/app/out ghcr.io/energostalin/pfg-parser -- declaration 131232 ./out/131232.xslx
 ```
 ### Yarn 3.3.1
-NODE_AUTH_TOKEN токен от гитхаба с разрешениями registry:read
+> **NOTE** теперь публикуется с --access public можно качать без авторизации главное не забыть добваить @latest
 ### **.yarnrc.yml**
 ```yaml
 npmScopes:
