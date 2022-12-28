@@ -21,7 +21,6 @@ docker pull ghcr.io/energostalin/pfg-parser
 docker start -v data:/app/out ghcr.io/energostalin/pfg-parser -- declaration 131232 ./out/131232.xslx
 ```
 ### Yarn 3.3.1
-> **NOTE** теперь публикуется с --access public можно качать без авторизации главное не забыть добваить @latest
 ### **.yarnrc.yml**
 ```yaml
 npmScopes:
