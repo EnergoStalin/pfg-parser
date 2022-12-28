@@ -15,9 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build & Push
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           docker login -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
-          docker compose build
+          docker compose build --build-arg NODE_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN }}
           docker compose push
