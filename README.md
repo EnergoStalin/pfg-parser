@@ -20,6 +20,15 @@ docker pull ghcr.io/energostalin/pfg-parser
 docker run -v data:/app/out ghcr.io/energostalin/pfg-parser --help
 ```
 ### Yarn
+### **.yarnrc.yml**
+```yaml
+npmScopes:
+  energostalin:
+    npmAlwaysAuth: true
+    npmAuthToken: "${NODE_AUTH_TOKEN-aboba}"
+    npmPublishRegistry: "https://npm.pkg.github.com/"
+    npmRegistryServer: "https://npm.pkg.github.com/"
+```
 ```powershell
 yarn set version stable
 yarn init

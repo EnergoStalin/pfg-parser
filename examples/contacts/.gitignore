@@ -1,3 +1,4 @@
 cache
 *.js
 .env
+install-state.gz
