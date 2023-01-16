@@ -19,21 +19,12 @@
 docker pull ghcr.io/energostalin/pfg-parser
 docker run -v data:/app/out ghcr.io/energostalin/pfg-parser --help
 ```
-### Yarn 3.3.1
-### **.yarnrc.yml**
-```yaml
-npmScopes:
-  energostalin:
-    npmAlwaysAuth: true
-    npmAuthToken: "${NODE_AUTH_TOKEN-aboba}"
-    npmPublishRegistry: "https://npm.pkg.github.com/"
-    npmRegistryServer: "https://npm.pkg.github.com/"
-```
+### Yarn
 ```powershell
 yarn set version stable
 yarn init
 yarn add @energostalin/pfg-parser@latest
-yarn exec pfg-parser declaration 131232 ./131232.xslx
+yarn exec pfg-parser --help
 ```
 ### Или как пакет через yarn
 См. примеры в папке [examples](https://github.com/EnergoStalin/pfg-parser/tree/master/examples)

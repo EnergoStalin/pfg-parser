@@ -1,6 +1,8 @@
 import { auth, DeclarationsApi, Config } from '@energostalin/pfg-parser'
 import fs from 'fs/promises'
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED="0"
+
 function normalizeName(name: string) {
     return name[0] + name.slice(1).toLowerCase()
 }
@@ -18,8 +20,10 @@ function getNames(applicant) {
 
 const config = new Config()
 
-const api = new DeclarationsApi(await auth(config), config),
-    filter = JSON.parse((await fs.readFile('./data/declarations_filter.json')).toString('utf-8'))
+config.LogLevel = "silent"
+
+const api = new DeclarationsApi(await auth(config), config)
+const filter = JSON.parse((await fs.readFile('./data/declarations_filter.json')).toString('utf-8'))
 
 for await(const batch of api.Query(filter)) {
     for(const {id} of batch) {
@@ -32,5 +36,5 @@ for await(const batch of api.Query(filter)) {
 
         console.log(id, names, phones, emails)
     }
-    break;
+    break
 }
