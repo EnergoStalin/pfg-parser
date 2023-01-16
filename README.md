@@ -16,9 +16,8 @@
 ## Установка
 ### Docker
 ```powershell
-docker login -u GITHUB_USERNAME -p GITHUB_TOKEN ghcr.io
 docker pull ghcr.io/energostalin/pfg-parser
-docker start -v data:/app/out ghcr.io/energostalin/pfg-parser -- declaration 131232 ./out/131232.xslx
+docker run -v data:/app/out ghcr.io/energostalin/pfg-parser --help
 ```
 ### Yarn 3.3.1
 ### **.yarnrc.yml**
