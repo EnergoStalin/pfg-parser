@@ -39,6 +39,7 @@ yarn exec pfg-parser --help
 См. примеры в папке [examples](https://github.com/EnergoStalin/pfg-parser/tree/master/examples)
 
 ## Пример .env конфига
+Дефолтные значения можно не указывать
 > Где лежит .env конфигурация можно указать через переменную окружения **PFG_PARSER_DOTENV_LOCATION**. Примерные значения указаны справа.
 
 > **Note** в случае с докером надо прокинуть конфиг в контейнер через флаг -v указав в **PFG_PARSER_DOTENV_LOCATION** путь до файла внутри контейнера
@@ -76,9 +77,8 @@ PFG_PARSER_NUM_RETRIES=10
 
 PFG_PARSER_DECLARATIONS_FILTER=./data/declarations_filter.json
 ```
-# Заметки конфига
-Дефолтные значения можно не указывать
+# Инструкция по получению
 ## PFG_PARSER_PASSWORD
-Если не подошёл дефолтный можно зайти на сайт через браузер и взять из запроса /login от туда же можно обновить PFG_PARSER_USER
+Если не подошёл дефолтный можно зайти на [сайт](https://pub.fsa.gov.ru) через браузер и взять из запроса /login от туда же можно обновить PFG_PARSER_USER
 ## PFG_PARSER_DECLARATIONS_FILTER
 Фильтры для поиска можно [настроить](https://pub.fsa.gov.ru/rds/declaration) и нажав поиск скоприровать из запроса /get
