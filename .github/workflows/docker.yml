@@ -13,9 +13,10 @@ jobs:
     needs: npm
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
       - uses: actions/checkout@v3
       - name: Build & Push
         run: |
           docker login -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
-          docker compose build --build-arg NODE_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN }}
-          docker compose push
+          NODE_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN }}; docker buildx bake --push
