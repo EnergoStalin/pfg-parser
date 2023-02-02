@@ -18,6 +18,7 @@ jobs:
           node-version: 19
           cache: yarn
       - name: Build & Publish
+        continue-on-error: true
         run: |
           yarn --immutable
           yarn build

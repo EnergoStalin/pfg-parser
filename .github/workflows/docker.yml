@@ -7,10 +7,7 @@ on:
 
 jobs:
   npm:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: ./.github/workflows/yarn.yml
-        continue-on-error: true
+    uses: ./.github/workflows/yarn.yml
 
   docker:
     needs: npm
