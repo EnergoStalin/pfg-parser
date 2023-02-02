@@ -7,7 +7,10 @@ on:
 
 jobs:
   npm:
-    uses: ./.github/workflows/yarn.yml
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/workflows/yarn.yml
+        continue-on-error: true
 
   docker:
     needs: npm
@@ -19,4 +22,4 @@ jobs:
       - name: Build & Push
         run: |
           docker login -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
-          NODE_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN }}; docker buildx bake --push
+          NODE_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN }} docker buildx bake --push
