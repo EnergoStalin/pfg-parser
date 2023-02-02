@@ -41,7 +41,7 @@ if(require.main === module)
             await batch(options, api, config)
         })
 
-    program.option('--config')
+    program.command('config')
         .description('Печатает конфиг')
         .action(async function() {
             console.log(JSON.stringify(config, null, 2))

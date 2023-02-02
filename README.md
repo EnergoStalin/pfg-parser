@@ -17,7 +17,8 @@
 ### Docker
 ```powershell
 docker pull ghcr.io/energostalin/pfg-parser
-docker run -v data:/app/out ghcr.io/energostalin/pfg-parser --help
+# К примеру
+docker run -v $pwd/data:/app/data ghcr.io/energostalin/pfg-parser:latest declarations ./data/declarations_filter.json ./data/docs
 ```
 ### Yarn
 ### **.yarnrc.yml**

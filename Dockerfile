@@ -2,6 +2,8 @@ FROM node:latest
 
 ARG NODE_AUTH_TOKEN=token
 
+ENV NODE_TLS_REJECT_UNAUTHORIZED=0
+
 WORKDIR /app
 
 COPY .yarn/releases .yarn/releases
