@@ -12,9 +12,9 @@
             "outputCapture": "std",
             "runtimeExecutable": "npm",
             "args": [
-                "declaration",
-                "16239655",
-                "./16239655.json"
+                "declarations",
+                ".\\data\\declarations_filter.json",
+                ".\\data\\data"
             ],
             "runtimeArgs": ["exec", "yarn", "run", "start:debug"],
             "skipFiles": [

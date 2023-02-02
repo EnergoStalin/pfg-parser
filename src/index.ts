@@ -27,9 +27,7 @@ if(require.main === module)
         .action(async function(id, file, options) {
             options.id = id
             options.file = file
-            try {
-                await single(options, api, config)
-            } catch {}
+            await single(options, api, config)
         })
     program.command('declarations')
         .description('Получает декларации по filter и помещает её в указанный файл.')
@@ -40,9 +38,13 @@ if(require.main === module)
         .action(async function(filter, output_directory, options) {
             try{options.filter = (await fs.readFile(filter)).toString()}catch{options.filter = filter}
             config.OutputDirectory ??= output_directory
-            try {
-                await batch(options, api, config)
-            } catch {}
+            await batch(options, api, config)
+        })
+
+    program.option('--config')
+        .description('Печатает конфиг')
+        .action(async function() {
+            console.log(JSON.stringify(config))
         })
 
     program.parse()
