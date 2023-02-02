@@ -44,7 +44,7 @@ if(require.main === module)
     program.option('--config')
         .description('Печатает конфиг')
         .action(async function() {
-            console.log(JSON.stringify(config))
+            console.log(JSON.stringify(config, null, 2))
         })
 
     program.parse()
