@@ -49,6 +49,7 @@ export async function batch(args: any, axios: AxiosInstance, config: Config) {
             if(args.stdout) {
                 console.log(text)
             } else {
+                logger.info(`Writing ${file}`)
                 await fs.writeFile(file, text)
             }
         }
