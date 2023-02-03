@@ -14,7 +14,7 @@
             "args": [
                 "declarations",
                 ".\\data\\declarations_filter.json",
-                ".\\data\\data"
+                ".\\data\\out"
             ],
             "runtimeArgs": ["exec", "yarn", "run", "start:debug"],
             "skipFiles": [

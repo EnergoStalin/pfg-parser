@@ -58,7 +58,7 @@ export async function auth(config: Config) {
         retries: config.Retries,
         retryDelay: (count) => {
             const cooldown = count * config.DelayGain
-            logger.error(`503 received retry: ${count} resume after ${cooldown / 1000} seconds`)
+            logger.error(`Erorr received retry: ${count} resume after ${cooldown / 1000} seconds`)
             return cooldown
         },
         retryCondition: async (error) => {
@@ -67,7 +67,7 @@ export async function auth(config: Config) {
                 token = await fetchToken(config)
                 return true
             }
-            return error.response?.status === 503
+            return error.response?.status !== 200
         }
     })
     
